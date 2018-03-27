@@ -1,0 +1,295 @@
+一、什么是JSP（Java Server Pages)，原来是没有jsp的，只有severlet，后来为了方便开发，将页面显示从severlet中提取出来，通过Java程序段和jsp标记与severlet继续关联（Java Servlet是JSP的技术基础），所以当Web服务器在遇到访问JSP网页的请求时，首先执行其中的程序段，然后将执行结果连同JSP文件中的HTML代码一起返回给客户。
+
+下面是对相关资料进行的整理：同时可以参考http://developer.51cto.com/art/200907/134623.htmJSP应用开发的背景及特点
+
+由Sun Microsystems公司倡导、许多公司参与一起建立的一种动态网页技术标准。它是在传统的网页HTML文件(*.htm,*.html)中插入Java程序段(Scriptlet，即java脚本标签，例如：<% %>)和JSP标记(tag，例如：<jsp: include="">)，从而形成JSP文件(*.jsp)，JSP可用一种简单易懂的等式表示为：HTML+Java+JSP标记=JSP。。用JSP开发的Web应用是跨平台的，JSP与severlet同属于j2ee的组件，所以也是一次编写，到处运行。
+
+二、JSP将网页逻辑（由java程序段和jap标记执行）与网页设计和显示（html标签）分离，与JavaServlet一样，是在服务器端执行的，就是在服务器端，JSP引擎解释JSP标识和脚本，生成所请求的内容（生成内容的逻辑被封装在标识和JavaBeans组件中，并且捆绑在脚本中，所有的脚本在服务器端运行。），并且将结果以HTML（或者XML）页面的形式（返回给客户端的就是一个HTML文本）发送回浏览器，因此客户端只要有浏览器就能浏览。
+
+三、不要将JSP于JAVASCRIPT混淆：JSP属于java的组件，使用的是java语言，所以JSP与JAVASCRIPT的区别就是JAVA与JAVASCRIPT的区别。
+
+1.JavaScript是一种动态、弱类型、基于原型的语言，通过浏览器可以直接执行；而Java（JSP）是面向对象的编程语言，必须先进行编绎和连接等动作才可执行。　　
+
+2.JavaScript编写在HTML文件中，直接查看网页的原始码，就可以看到JavaScript程式，所以没有保护，任何人都可以透过HTML文件复制程式；而Java应用在网页的程式称为Java Applet（Applet是[小程序]的意思），是和HTML文件分开的。　　
+
+3.JavaScript的结构较为自由松散，而Java和正统的编程语言一样，结构较为严谨。　　
+
+4.JavaScript不具有读写档案及网络控制等功能，Java则提供了这些功能，但是JavaScript在网页内容的控制和互动性方面，比较方便快捷的。　　
+
+5.javascript多运行于客户端，而java多运行于服务器端。
+
+四、JSP有9个内置对象：
+
+1、request对象：该对象封装了用户提交的信息，通过调用该对象相应的方法可以获取封装的信息，即使用该对象可以获取用户提交信息。它是HttpServletRequest的实例。实例：不必直接传送参数到JavaBean，你可以藉由请求对象来取得参数的值: <% String name=request.getParameter("name"); out.println(name); %>。
+
+2、response对象：对客户的请求做出动态的响应，向客户端发送数据。
+
+3、session对象
+
+　　（1）、什么是session：session对象是一个JSP内置对象，它在第一个JSP页面被装载时自动创建，完成会话期管理。　　从一个客户打开浏览器并连接到服务器开始，到客户关闭浏览器离开这个服务器结束，被称为一个会话。当一个客户访问一个服务器时，可能会在这个服务器的几个页面之间反复连接，反复刷新一个页面，服务器应当通过某种办法知道这是同一个客户，这就需要session对象。　　
+
+    （2）、session对象的ID：当一个客户首次访问服务器上的一个JSP页面时，JSP引擎产生一个session对象，同时分配一个String类型的ID号，JSP引擎同时将这个ID号发送到客户端，存放在Cookie中，这样session对象和客户之间就建立了一一对应的关系。当客户再访问连接该服务器的其他页面时，不再分配给客户新的session对象，直到客户关闭浏览器后，服务器端该客户的session对象才取消，并且和客户的会话对应关系消失。当客户重新打开浏览器再连接到该服务器时，服务器为该客户再创建一个新的session对象。　　
+
+    （3）、session对象存在一定时间过期问题，所以存在session中的名值对会在一定时间后失去，可以通过更改session有效时间来避免这种情况。同时编程时尽量避免将大量有效信息存储在session中，request是一个不错的替代对象。
+
+4、application对象
+
+　　（1）、什么是application:　　服务器启动后就产生了这个application对象，当客户在所访问的网站的各个页面之间浏览时，这个application对象都是同一个，直到服务器关闭。但是与session不同的是，所有客户的application对象都是同一个，即所有客户共享这个内置的application对象。　　
+
+    （2）、application对象常用方法:
+
+                A：public void setAttribute(String key,Object obj):将参数Object指定的对象obj添加到application对象中，并为添加的对象指定一个索引关键字。　　
+
+           B：public Object getAttribute(String key):获取application对象中含有关键字的对象。
+
+5、out对象：是一个输出流，用来向客户端输出数据。out对象用于各种数据的输出。在页面中例如：<%out.print（"<a href='http://write.blog.csdn.net/postedit'/>"）%>
+
+6、Page对象：就是指向当前JSP页面本身，有点象类中的this指针，它是java.lang.Object类的实例。JSP网页本身，page对象是当前JSP页面转换后的Servlet类的实例。从转换后的Servlet类的代码中，可以看到这种关系：Object page = this;在JSP页面中，很少使用page对象。
+
+7、config：jav  jsp validator相关的错误
+
+ax.servlet. ServletConfig 的实例，该实例代表该JSP 的配置信息。常用的方法有getInitParameter(String paramNarne)及getInitParameternarnes() 等方法。事实上， JSP页面通常无须配置，也就不存在配置信息。因此，该对象更多地在Servlet 中有效。很少会在jsp页面中使用这个对象
+
+8、exception：java.lang.Throwable的实例，该实例代表其他页面中的异常和错误。只有当页面是错误处理页面，即编译指令page的isErrorPage 属性为true时，该对象才可以使用。常用的方法有getMessage()和printStackTrace()等。
+
+9、 pageContext：javax.servlet.jsp.PageContext的实例，网页的属性是在这里管理，该对象代表该JSP 页面上下文，使用该对象可以访问页面中的共享数据。常用的方法有getServletContext()和getServletConfig()等。
+
+　　//使用pageContext设置属性，该属性默认在page 范围内　　pageContext. setAttribute("page" , "hello") ;
+
+ 　　//使用request设置属性，该属性默认在request 范围内　　request. setAttribute ("request" , "hello");
+
+　　//使用pageContext将属性设置在request范围中　　pageContext.setAttribute("request2" , "hello" , pageContext.REQUEST_SCOPE);
+
+ 　　//使用session将属性设置在session范围中　　session.setAttribute("session" , "hello");
+
+ 　　//使用pageContext将属性设置在session范围中　　pageContext.setAttribute("session2" , "hello" , pageContext.SESSION_SCOPE);
+
+ 　　//使用application将属性设置在application范围中　　application. setAttribute ("app" , "hello") ;
+
+ 　　//使用pageContext将属性设置在application 范围中　　pageContext.setAttribute("app2" , "hello" , pageContext.APPLICATION_SCOPE) ;
+
+五、JSP的4个作用域:
+
+               page对象的作用范围仅限于用户请求的当前页面，对page对象的引用通常存储在pageContext对象中。
+
+           request作用域：一个HTTP请求（request请求）的处理可能需要多个Servlet合作，而这几个Servlet之间可以通过某种方式传递信息，但这个信息在请求结束后就无效了（就是说request作用域是在请求未结束前有效，重定向跳转不能使用request用域，服务器跳转可以使用request作用域，这也很好的解释了重定向跳转和服务器跳转的区别）。这几个Servlet之间的信息共享是通过HttpServletRequest接口的两个方法来实现的。
+
+          session作用域，会话作用域，一个客户端与服务器端建立的链接，只能当前用户访问，在另外一个客户端上无法访问，传值与跳转方式无关，一般用重定向跳转session是通过HttpSession接口实现，
+
+          application作用域，应用作用域，一个项目就是一个应用（程序），放置在服务器中，可以供每一个客户端用户访问，application作用域上的信息传递是通过ServletContext实现
+
+六、jsp标签分三种:
+
+   指示标签（编译器指示）：<%@ page  %>指示当前页面的属性和运行时所需资源，属于静态操作
+
+             例如：<%@ page import="java.util.*" %>导包
+
+                   <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+             其中：language表示所用的语言，
+
+                   contentType规定内容的类型，所有文件都有，在编程里面叫做MIME类型：多文本网络邮件扩充协议，负责对邮件管理，
+
+                             现在逐渐衍生为对页面类型的定义，可以去Tomcat下的conf文件夹下的web.xml文件中找
+
+                   text/html这是文本类型中html格式的文件
+
+                   charset=UTF-8表示使用的字符集
+
+                   pageEncoding="UTF-8"专门定义当前页面使用的字符集，与上面的重复，可以直接用上面的
+
+                                         
+
+            <%@ include  %/>：静态包含，可以放在<body>和<head>任何位置，
+
+                   <%@ include file="a.jsp" %>:把a.jsp引入到当前页面中进行显示，原理是将a.jsp页面中的脚本引入（并不显示脚本），编译运行，在当前页面显示结果
+
+            <%@ taglib  %/>:jstl导入标签<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+    行为标签:也可以说是jsp的动作
+
+               <jsp:include page/>动态包含，和静态包含的作用效果是一样的
+
+                 <jsp:include page="a.jsp"/>:把a.jsp引入，原理是程序在当前页面中进行执行时，遇到引入a.jsp的语句，程序跳转到a.jsp页面中执行程序，
+
+                                             然后把程序的执行结果带到当前页面中进行显示，程序继续向下执行当前页面没有执行完的程序
+
+              <jsp:getProperty  />：从对象中取值并打印到页面
+
+              <jsp:setProperty  />：为类的属性赋值
+
+              <jsp:forward  >：实现服务器端跳转: <jsp:forward  page="a.jsp"></jsp:forward >
+
+               <jsp:attribute name=""></jsp:attribute>
+
+               <jsp:params></jsp:params>
+
+                     <jsp:param />传参:<jsp:forward  page="a.jsp"><jsp:param name="name" value="admin"/></jsp:forward >,
+
+                                 接收方面：String name=(String)request.getParameter("name");
+
+                     <jsp:useBean ></jsp:useBean>就是为了使用要引入的类，格式如下：id相当于类的对象，class代表类，scope代表所使用的作用域
+
+ 
+
+                    例子：<jsp:useBean id="stu" class="net.cstp.vo.Student" scope="page"></jsp:useBean>
+
+                          <jsp:setProperty property="userName" name="stu" value="john"/>
+
+                          <jsp:getProperty property="userName" name="stu"/>
+
+     脚本标签:<%脚本 %>     <%! 声明全局变量  %>        <%=表达式（属性名） %>用于输出到页面，注释　<%--注释 --%>（这种注释通过页面看源码是看不到的）
+
+七、JSP跳转方式与区别：
+
+重定向跳转：客户端访问了一个服务器，这个服务器中有跳转请求，服务器告诉客户端，重新发送一个请求，去访问另一个页面，实现页面的跳转，重新定向访问跳转
+
+                 response.sendRedirect("success.jsp");
+
+                 response.sendRedirect("success.jsp?name=admin");跳转并传参
+
+ 
+
+ 
+
+服务器跳转：客户端访问了一个服务器，这个服务器中有跳转请求，服务器会直接发送一个新请求，去访问另一个页面，实现一个服务器跳转到另一个服务器，实现页面跳转
+
+            效率比较高，避免二次请求
+
+                 RequestDispatcher rd=request.getRequestDispatcher("success.jsp?name=admin");跳转并传参
+
+                    rd.forward(request,response);//里面的值是对象
+
+                    //或者：
+
+                    request.getRequestDispatcher("success.jsp").forward(request,response);
+
+            还有用jsp行为标签也可以实现服务器端跳转
+
+                 <jsp:forward  >：实现服务器端跳转: <jsp:forward  page="a.jsp"></jsp:forward >
+
+                                                     <jsp:forward  page="a.jsp"><jsp:param name="name" value="admin"/></jsp:forward >跳转并传参
+
+        服务器端跳转与重定向跳转的区别：
+
+ 
+
+                服务器端跳转：跳转时地址栏的地址不会跟随跳转页面变化，请求会向下一直传递，request作用域适用                     
+
+                重定向跳转：跳转时地址栏的地址会跟随跳转页面地址变化，值传递一次请求，适用session作用域
+
+八、表单提交方式：post 和get
+
+      get/post区别:
+
+             get：显示传参，请求中传输的内容大小有明确的规定不大于2k，显示结果http://localhost/jsp12.19.1/login.jsp?username=scott&userpwd=tiger，
+
+              get 在地址栏里面直接敲回车访问，是get请求方式，超链接也是get请求，重定向跳转<a></a>  
+
+             post:隐式传参，请求没有大小限制，显示结果http://localhost/jsp12.19.1/login.jsp，
+
+九、jsp的三个常用配置：
+
+    1、如何显示目录列表：我们在本机测试程序时，一般都习惯在浏览器中就能遍历到某个目录下都有哪些文件，这就需要web服务器支持目录列表：
+
+       打开文件conf/web.xml，找到以下代码：<param-name>listings</param-name>　　<param-value>false</param-value> 　　将其中的false改成true
+
+ 　　2、配置error-page：（指定处理错误的页面）打开文件D:\demo\WEB-INF\web.xml：在<web-app>…</web-app>中间加入：
+
+ 　　<error-page>
+
+         　　<error-code>404</error-code>
+
+         　　<location>/NotFound.jsp</location>
+
+ 　　</error-page>（错误代码为404的错误导向到NotFound.jsp）
+
+ 　　<error-page>
+
+        　　<error-code>500</error-code>
+
+        　　<location>/error.jsp</location>
+
+ 　　</error-page>　　（当系统发生500错误即服务器内部错误时，跳转到错误处理页面error.jsp）
+
+ 　　<error-page>
+
+        　　<exception-type>java.lang.NullException</exception-type>
+
+        　　<location>/error.jsp</location>
+
+ 　　</error-page>　　（当系统发生java.lang.NullException（即空指针异常）时，跳转到错误处理页面error.jsp）
+
+ 　　提醒：　　以上页面都需要做大一点（>=2kB），否则不起作用。　　原因：tomcat把这样的页面字节限制在不少于多少字节。
+
+  　3、jsp页面出现乱码如何解决？　　在页头加上：　　<%@ page contentType=“text/html; charset=gb2312″%>
+
+十、JSP的自定义标签：
+
+基本概念：
+
+　　1.标签(Tag):标签是一种XML元素，通过标签可以使JSP网页变得简洁并且易于维护，还可以方便地实现同一个JSP文件支持多种语言版本。由于标签是XML元素，所以它的名称和属性都是大小写敏感的　　
+
+    2.标签库(Tag library):　　由一系列功能相似、逻辑上互相联系的标签构成的集合称为标签库。
+
+　　3.标签库描述文件(Tag Library Descriptor):标签库描述文件是一个XML文件，这个文件提供了标签库中类和JSP中对标签引用的映射关系。它是一个配置文件，和Web.xml是类似的。
+
+　　4.标签处理类(Tag Handle Class):　　标签处理类是一个Java类，这个类继承了TagSupport或者扩展了SimpleTag接口，通过这个类可以实现自定义JSP标签的具体功能。　　
+
+自定义JSP标签的格式：
+
+ 　　1.　　<% @ taglib prefix=”someprefix”　uri=”/sometaglib” %>
+
+ 　　为了使到JSP容器能够使用标签库中的自定义行为，必须满足以下两个条件：
+
+       　　1)从一个指定的标签库中识别出代表这种自定义行为的标签
+
+       　　2)找到实现这些自定义行为的具体类
+
+       　　解释：第一个必需条件：找出一个自定义行为属于那个标签库，是由标签指令的前缀(Taglib Directive's Prefix)属性完成，所以在同一个页面中使用相同前缀的元
+
+                                素都属于这个标签库。每个标签库都定义了一个默认的前缀，用在标签库的文档中或者页面中插入自定义标签。
+
+                                所以，你可以使用除了诸如jsp,jspx,java,Servlet,sun,sunw(它们都是在JSP白皮书中指定的保留字)之类的前缀。
+
+           　　第二个要求是uri属性满足的。为每个自定义行为找到对应的类。这个uri包含了一个字符串，容器用它来定位TLD文件。在TLD文件中可以找到标签库中所有标签
+
+                                处理类的名称。
+
+ 　　2.当web应用程序启动时，容器从WEB-INF文件夹的目录结构的META-INF搜索所有以.tld结尾的文件。也就是说它们会定位所有的TLD文件。
+
+        对于每个TLD文件，容器会先获取标签库的URI，然后为每个TLD文件和对应的URI创建映射关系。
+
+    　　在JSP页面中，我们仅需通过使用带有URI属性值的标签库指令来和具体的标签库匹配
+
+自定义JSP标签的处理过程：
+
+ 　　1．在JSP中引入标签库：　　<% @ taglib prefix=”taglibprefix” uri=”tagliburi” %>
+
+ 　　2．在JSP中使用标签库标签
+
+ 　　3．Web容器根据第二个步骤中的prefix，获得第一个步骤中声明的taglib的uri属性值
+
+ 　　4．Web容器根据uri属性在web.xml找到对应的元素
+
+ 　　5．从元素中获得对应的元素的值
+
+ 　　6．Web容器根据元素的值从WEB-INF/目录下找到对应的.tld文件
+
+ 　　7．从.tld文件中找到与tagname对应的元素
+
+ 　　8．凑元素中获得对应的元素的值
+
+ 　　9．Web容器根据元素的值创建相应的tag handle class的实例
+
+ 　　10. Web容器调用这个实例的doStartTag/doEndTag方法完成相应的处理
+
+ 创建和使用Tag Library的基本步骤：
+
+　　 1.创建标签的处理类(Tag Handler Class)
+
+ 　　2.创建标签库描述文件(Tag Library Descrptor File)
+
+ 　　3.在web.xml文件中配置元素（加载tld文件，此步也可以省略，直接有第四步加载tld）
+
+ 　　4.在JSP文件中引人标签库
