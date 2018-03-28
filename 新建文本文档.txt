@@ -1,0 +1,27 @@
+浏览器：F5 刷新  F6 定位URL  F11全屏 F12 调试模式
+Eclipse
+ F5-Step Into：移动到下一步，如果当前的行是一个方法调用，将进入这个方法的第一行。（可以通过第九条来排除）
+F6-Step Over：移动到下一行。如果当前行有方法调用，这个方法将被执行完毕返回，然后到下一行。
+F7-Step Return：继续执行当前方法，当当前方法执行完毕的时候，控制将转到当前方法被调用的行。
+F8-移动到下一个断点处
+F11 debug运行
+F12 激活编辑器
+
+
+
+常见的5中运行时异常是非常容易的。  
+
+例如：ClassCastException(类转换异常)
+
+IndexOutOfBoundsException(数组越界)
+NullPointerException(空指针)
+ArrayStoreException(数据存储异常，操作数组时类型不一致)
+还有IO操作的BufferOverflowException异常
+
+
+
+
+Java后台开发Jsp传值的三种方法
+（1）直接在URL请求后添加，可用request.getParameter(name)取得参数。
+（2）设置session和request。通过显示的把参数放置到session和request中
+（3）< jsp:param name="paramname" value="paramvalue" /> 
