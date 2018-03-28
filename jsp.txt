@@ -1,45 +1,45 @@
-1¡¢JspµÄÖØ¶¨ÏòºÍ×ª·¢µÄÁ÷³ÌÓÐÊ²Ã´Çø±ð
-	ÖØ¶¨ÏòÊÇ¿Í»§¶ËÐÐÎª£¬×ª·¢ÊÇ·þÎñÆ÷¶ËÐÐÎª
-	ÖØ¶¨ÏòÊ±·þÎñÆ÷²úÉúÁ½´ÎÇëÇó£¬×ª·¢²úÉúÒ»´ÎÇëÇó£¬ÖØ¶¨ÏòÊ±¿ÉÒÔ×ª·¢µ½ÏîÄ¿ÒÔÍâµÄÈÎºÎÍøÖ·£¬×ª·¢Ö»ÄÜÔÚµ±Ç°ÏîÄ¿Àï×ª·¢
-	ÖØ¶¨Ïò»áµ¼ÖÂrequest¶ÔÏóÐÅÏ¢¶ªÊ§¡£×ª·¢Ôò²»»á
-	×ª·¢µÄurl²»»á±ä,request.getRequestDispatch().forward()
-	ÖØ¶¨ÏòµÄurl»á¸Ä±ä,response.getRedirect().sendRedirect();
+ï»¿1ã€Jspçš„é‡å®šå‘å’Œè½¬å‘çš„æµç¨‹æœ‰ä»€ä¹ˆåŒºåˆ«
+	é‡å®šå‘æ˜¯å®¢æˆ·ç«¯è¡Œä¸ºï¼Œè½¬å‘æ˜¯æœåŠ¡å™¨ç«¯è¡Œä¸º
+	é‡å®šå‘æ—¶æœåŠ¡å™¨äº§ç”Ÿä¸¤æ¬¡è¯·æ±‚ï¼Œè½¬å‘äº§ç”Ÿä¸€æ¬¡è¯·æ±‚ï¼Œé‡å®šå‘æ—¶å¯ä»¥è½¬å‘åˆ°é¡¹ç›®ä»¥å¤–çš„ä»»ä½•ç½‘å€ï¼Œè½¬å‘åªèƒ½åœ¨å½“å‰é¡¹ç›®é‡Œè½¬å‘
+	é‡å®šå‘ä¼šå¯¼è‡´requestå¯¹è±¡ä¿¡æ¯ä¸¢å¤±ã€‚è½¬å‘åˆ™ä¸ä¼š
+	è½¬å‘çš„urlä¸ä¼šå˜,request.getRequestDispatch().forward()
+	é‡å®šå‘çš„urlä¼šæ”¹å˜,response.getRedirect().sendRedirect();
 
-2¡¢JspºÍServletµÄÇø±ð
-	JspµÄ¿É¶ÁÐÔÇ¿£¬ÈÝÒ×¿´µÃ¶®£¬²¢ÇÒJspÔÚ×îºó»á±àÒë³ÉServlet
-	servletÈÝÒ×µ÷ÊÔ,µ«ÊÇÉú³ÉhtmlÒ³Ãæ¹¤×÷Á¿´ó
-3¡¢SessionµÄÖ÷Òª¼¸¸ö·½·¨µÄÇø±ð
-	Session²»ÄÜÍ¨¹ýnew´´½¨£¬ÐèÒªÍ¨¹ýµ÷ÓÃgetSession()»òÕßgetSession(true)·½·¨´´½¨£¬getSession()ÊÇ×Ô¶¯´´½¨session£¬
-getSession(true)ÊÇÇ¿ÖÆ´´½¨session£¬setAttribute()·½·¨¿ÉÒÔÓÃÓÚ´«Öµ£¬getAttribute()¿ÉÒÔÓÃÓÚÈ¡Öµ
-£¨µÚÒ»´Î´´½¨sessionµÄÊ±ºò£¬¾ÍÊÇ·ÃÎÊµÚÒ»´ÎÒ»¸öjspÒ³Ãæ<Õâ¸öÒ³ÃæµÄpageÖ¸Áî Ã»ÓÐÉèÖÃsession=false>£© 
-Ïú»Ùsessionµ÷ÓÃinvalidate·½·¨
-Í¨¹ýsetMaxInactiveInterval()¿ÉÒÔÉè¶¨sessionµÄÉú´æÊ±¼ä(web.xml¿ÉÒÔÉèÖÃsessionµÄÉú´æÊ±¼ä)
-4¡¢ÎªÊ²Ã´ÔÚsessionÉÙ·Å¶ÔÏó
-	ÒòÎªsessionµ×²ãÊÇÓÉcookieÊµÏÖµÄ£¬µ±¿Í»§¶ËµÄcookie±»½ûÓÃºó£¬sessionÒ²»áÊ§Ð§£¬ÇÒÓ¦¾¡Á¿ÉÙ
-ÏòsessionÖÐ±£´æÐÅÏ¢£¬sessionµÄÊý¾Ý±£´æÔÚ·þÎñÆ÷¶Ë£¬µ±ÓÐ´óÁ¿sessionÊ±£¬»á½µµÍ·þÎñÆ÷µÄÐÔÄÜ
-5¡¢ÔõÃ´ÅÐ¶Ïä¯ÀÀÆ÷ÊÇ·ñÖ§³ÖCookie
-	¿ÉÒÔÊ¹ÓÃjavaScriptµÄ·½·¨navigator.cookieEnabledÅÐ¶Ïä¯ÀÀÆ÷ÊÇ·ñÖ§³Öcookie
-6¡¢JspÒ³ÃæÌø×ª
-	JspÒ³ÃæÌø×ªÓÐÁ½ÖÖ·½Ê½£¬forwardºÍredirect£¨×ª·¢ºÍÖØ¶¨Ïò£©
-7¡¢RequestºÍSessionµÄÈ¡ÖµÇø±ð£¬ÒÔ¼°³öÏÖÂÒÂëµÄ½â¾ö·½Ê½£¨²»ÄÜÔÚjava´úÂëÖÐÉèÖÃ£©
-	Request¿ÉÒÔÍ¨¹ýgetAttribute()·½·¨Ö±½ÓÈ¡Öµ£¬Ò²¿ÉÍ¨¹ýgetParameter()È¡Öµ
-	SessionÐèÒªÍ¨¹ýrequest.getSession().getAttribute()²ÅÄÜÈ¡Öµ
-	RequestÊÇÕë¶ÔÒ»´ÎÇëÇó£¬SessionÊÇÕë¶ÔÕû¸ö»á»°
-      ÔÚÒ³ÃæÍ¨¹ýcontentType£¬pageEncoding£¬contentÉèÖÃ±àÂë¸ñÊ½£¬±ØÐëÒªÒ»ÖÂ
-8¡¢404ºÍ500ÊÇÊ²Ã´ÒâË¼
-	404 £ºÕÒ²»µ½urlÇëÇóµÄÂ·¾¶£¬Ò»°ãÊÇ¹¤³ÌÃû²»¶Ô»òÕßÆ´Ð´´íÎó
-	500 £º·þÎñÆ÷ÄÚ²¿´íÎó£¬Ò»°ãÊÇ·þÎñÆ÷ÄÚ²¿´úÂë±àÐ´´íÎó£¬Ò²ÓÐ¿ÉÄÜÊÇÅ×Òì³£µ¼ÖÂ
-9¡¢Ð´³ö5ÖÖJSTL³£ÓÃ±êÇ©
-<c:if>£¬<c:item>£¬<c:foreach>£¬<c:out>£¬<c:set>
-10¡¢ServletºÍ¹ýÂËÆ÷µÄÇø±ð
-	Servlet£ºÊÇÓÃÀ´´¦Àí¿Í»§¶Ë·¢ËÍµÄÇëÇó£¬È»ºóÉú³ÉÏìÓ¦²¢½«Æä´«¸øserver·þÎñÆ÷£¬
-	×îºó·þÎñÆ÷½«ÏìÓ¦·µ»Ø¸ø¿Í»§¶Ë
-	¹ýÂËÆ÷£ºÊÇÓÃÓÚ ¶ÔservletÈÝÆ÷µ÷ÓÃservletµÄ¹ý³Ì½øÐÐÀ¹½Ø
-	¿ÉÒÔÔÚservlet½øÐÐÏìÓ¦´¦ÀíÇ°ºó×öÒ»Ð©ÌØÊâµÄ´¦Àí,Æ©ÈçÈ¨ÏÞ,ÈÕÖ¾,±àÂëµÈ
-11¡¢servletµÄÉúÃüÖÜÆÚ
-	ServletµÄÖ´ÐÐÁ÷³ÌÒ²¾ÍÊÇservletµÄÉúÃüÖÜÆÚ£¬µ±·þÎñÆ÷Æô¶¯µÄÊ±ºòÉúÃüÖÜÆÚ¿ªÊ¼£¬È»ºóÍ¨¹ýinit()
-	¡¶Æô¶¯Ë³Ðò¸ù¾Ýweb.xmlÀïµÄstartup-on-loadÀ´È·¶¨¼ÓÔØË³Ðò¡·
-	·½·¨³õÊ¼»¯servlet£¬ÔÙ¸ù¾Ý²»Í¬ÇëÇóµ÷ÓÃdoGet»òdoPost·½·¨£¬×îºóÔÙÍ¨¹ýdestroy()·½·¨½øÐÐÏú»Ù¡£
-12¡¢GetºÍPostµÄÇø±ð
-ÔÚÒ³ÃæÌá½»Êý¾ÝÊ±£¬getµÄÊý¾Ý´óÐ¡ÓÐÏÞÖÆ4k£¬
-postÃ»ÓÐÏÞÖÆ£¬getÇëÇóÌá½»µÄÊý¾Ý»áÔÚµØÖ·À¸ÏÔÊ¾£¬post²»ÏÔÊ¾£¬ËùÒÔpost±Èget°²È«
+2ã€Jspå’ŒServletçš„åŒºåˆ«
+	Jspçš„å¯è¯»æ€§å¼ºï¼Œå®¹æ˜“çœ‹å¾—æ‡‚ï¼Œå¹¶ä¸”Jspåœ¨æœ€åŽä¼šç¼–è¯‘æˆServlet
+	servletå®¹æ˜“è°ƒè¯•,ä½†æ˜¯ç”Ÿæˆhtmlé¡µé¢å·¥ä½œé‡å¤§
+3ã€Sessionçš„ä¸»è¦å‡ ä¸ªæ–¹æ³•çš„åŒºåˆ«
+	Sessionä¸èƒ½é€šè¿‡newåˆ›å»ºï¼Œéœ€è¦é€šè¿‡è°ƒç”¨getSession()æˆ–è€…getSession(true)æ–¹æ³•åˆ›å»ºï¼ŒgetSession()æ˜¯è‡ªåŠ¨åˆ›å»ºsessionï¼Œ
+getSession(true)æ˜¯å¼ºåˆ¶åˆ›å»ºsessionï¼ŒsetAttribute()æ–¹æ³•å¯ä»¥ç”¨äºŽä¼ å€¼ï¼ŒgetAttribute()å¯ä»¥ç”¨äºŽå–å€¼
+ï¼ˆç¬¬ä¸€æ¬¡åˆ›å»ºsessionçš„æ—¶å€™ï¼Œå°±æ˜¯è®¿é—®ç¬¬ä¸€æ¬¡ä¸€ä¸ªjspé¡µé¢<è¿™ä¸ªé¡µé¢çš„pageæŒ‡ä»¤ æ²¡æœ‰è®¾ç½®session=false>ï¼‰ 
+é”€æ¯sessionè°ƒç”¨invalidateæ–¹æ³•
+é€šè¿‡setMaxInactiveInterval()å¯ä»¥è®¾å®šsessionçš„ç”Ÿå­˜æ—¶é—´(web.xmlå¯ä»¥è®¾ç½®sessionçš„ç”Ÿå­˜æ—¶é—´)
+4ã€ä¸ºä»€ä¹ˆåœ¨sessionå°‘æ”¾å¯¹è±¡
+	å› ä¸ºsessionåº•å±‚æ˜¯ç”±cookieå®žçŽ°çš„ï¼Œå½“å®¢æˆ·ç«¯çš„cookieè¢«ç¦ç”¨åŽï¼Œsessionä¹Ÿä¼šå¤±æ•ˆï¼Œä¸”åº”å°½é‡å°‘
+å‘sessionä¸­ä¿å­˜ä¿¡æ¯ï¼Œsessionçš„æ•°æ®ä¿å­˜åœ¨æœåŠ¡å™¨ç«¯ï¼Œå½“æœ‰å¤§é‡sessionæ—¶ï¼Œä¼šé™ä½ŽæœåŠ¡å™¨çš„æ€§èƒ½
+5ã€æ€Žä¹ˆåˆ¤æ–­æµè§ˆå™¨æ˜¯å¦æ”¯æŒCookie
+	å¯ä»¥ä½¿ç”¨javaScriptçš„æ–¹æ³•navigator.cookieEnabledåˆ¤æ–­æµè§ˆå™¨æ˜¯å¦æ”¯æŒcookie
+6ã€Jspé¡µé¢è·³è½¬
+	Jspé¡µé¢è·³è½¬æœ‰ä¸¤ç§æ–¹å¼ï¼Œforwardå’Œredirectï¼ˆè½¬å‘å’Œé‡å®šå‘ï¼‰
+7ã€Requestå’ŒSessionçš„å–å€¼åŒºåˆ«ï¼Œä»¥åŠå‡ºçŽ°ä¹±ç çš„è§£å†³æ–¹å¼ï¼ˆä¸èƒ½åœ¨javaä»£ç ä¸­è®¾ç½®ï¼‰
+	Requestå¯ä»¥é€šè¿‡getAttribute()æ–¹æ³•ç›´æŽ¥å–å€¼ï¼Œä¹Ÿå¯é€šè¿‡getParameter()å–å€¼
+	Sessionéœ€è¦é€šè¿‡request.getSession().getAttribute()æ‰èƒ½å–å€¼
+	Requestæ˜¯é’ˆå¯¹ä¸€æ¬¡è¯·æ±‚ï¼ŒSessionæ˜¯é’ˆå¯¹æ•´ä¸ªä¼šè¯
+      åœ¨é¡µé¢é€šè¿‡contentTypeï¼ŒpageEncodingï¼Œcontentè®¾ç½®ç¼–ç æ ¼å¼ï¼Œå¿…é¡»è¦ä¸€è‡´
+8ã€404å’Œ500æ˜¯ä»€ä¹ˆæ„æ€
+	404 ï¼šæ‰¾ä¸åˆ°urlè¯·æ±‚çš„è·¯å¾„ï¼Œä¸€èˆ¬æ˜¯å·¥ç¨‹åä¸å¯¹æˆ–è€…æ‹¼å†™é”™è¯¯
+	500 ï¼šæœåŠ¡å™¨å†…éƒ¨é”™è¯¯ï¼Œä¸€èˆ¬æ˜¯æœåŠ¡å™¨å†…éƒ¨ä»£ç ç¼–å†™é”™è¯¯ï¼Œä¹Ÿæœ‰å¯èƒ½æ˜¯æŠ›å¼‚å¸¸å¯¼è‡´
+9ã€å†™å‡º5ç§JSTLå¸¸ç”¨æ ‡ç­¾
+<c:if>ï¼Œ<c:item>ï¼Œ<c:foreach>ï¼Œ<c:out>ï¼Œ<c:set>
+10ã€Servletå’Œè¿‡æ»¤å™¨çš„åŒºåˆ«
+	Servletï¼šæ˜¯ç”¨æ¥å¤„ç†å®¢æˆ·ç«¯å‘é€çš„è¯·æ±‚ï¼Œç„¶åŽç”Ÿæˆå“åº”å¹¶å°†å…¶ä¼ ç»™serveræœåŠ¡å™¨ï¼Œ
+	æœ€åŽæœåŠ¡å™¨å°†å“åº”è¿”å›žç»™å®¢æˆ·ç«¯
+	è¿‡æ»¤å™¨ï¼šæ˜¯ç”¨äºŽ å¯¹servletå®¹å™¨è°ƒç”¨servletçš„è¿‡ç¨‹è¿›è¡Œæ‹¦æˆª
+	å¯ä»¥åœ¨servletè¿›è¡Œå“åº”å¤„ç†å‰åŽåšä¸€äº›ç‰¹æ®Šçš„å¤„ç†,è­¬å¦‚æƒé™,æ—¥å¿—,ç¼–ç ç­‰
+11ã€servletçš„ç”Ÿå‘½å‘¨æœŸ
+	Servletçš„æ‰§è¡Œæµç¨‹ä¹Ÿå°±æ˜¯servletçš„ç”Ÿå‘½å‘¨æœŸï¼Œå½“æœåŠ¡å™¨å¯åŠ¨çš„æ—¶å€™ç”Ÿå‘½å‘¨æœŸå¼€å§‹ï¼Œç„¶åŽé€šè¿‡init()
+	ã€Šå¯åŠ¨é¡ºåºæ ¹æ®web.xmlé‡Œçš„startup-on-loadæ¥ç¡®å®šåŠ è½½é¡ºåºã€‹
+	æ–¹æ³•åˆå§‹åŒ–servletï¼Œå†æ ¹æ®ä¸åŒè¯·æ±‚è°ƒç”¨doGetæˆ–doPostæ–¹æ³•ï¼Œæœ€åŽå†é€šè¿‡destroy()æ–¹æ³•è¿›è¡Œé”€æ¯ã€‚
+12ã€Getå’ŒPostçš„åŒºåˆ«
+åœ¨é¡µé¢æäº¤æ•°æ®æ—¶ï¼Œgetçš„æ•°æ®å¤§å°æœ‰é™åˆ¶4kï¼Œ
+postæ²¡æœ‰é™åˆ¶ï¼Œgetè¯·æ±‚æäº¤çš„æ•°æ®ä¼šåœ¨åœ°å€æ æ˜¾ç¤ºï¼Œpostä¸æ˜¾ç¤ºï¼Œæ‰€ä»¥postæ¯”getå®‰å…¨
