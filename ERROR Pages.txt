@@ -1,0 +1,6 @@
+﻿解决方案有三种：
+1、导入项目之前，请确认工作空间编码已设置为utf-8
+    window->Preferences->General->Wrokspace->Text file encoding->Other 选择UTF-8
+2、导入后，由于开发环境中JRE以及Tomcat Library名称可能和源代码中的不一致，可能会出现Build Path的错误，解决方法如下：
+    右键project->Build Path->Configure Build Path->选择Libraries tab页->删除带小红叉的Library->点击Add Library->选择JRE System Library(删了Tomcat Library的话就选择Server Runtime)->选择一个JRE后->Finish
+3、进入项目包下的.settings目录，找到org.eclipse.wst.common.project.facet.core.xml文件，用记事本打开后查看《runtime name="Apache Tomcat v6.0"/》，看是否与你eclipse设置的tomcat版本一致，如果不一致，则删除该内容即可
